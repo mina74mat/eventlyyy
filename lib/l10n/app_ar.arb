@@ -8,6 +8,21 @@
 "logout":"تسجيل الخروج",
 "let_is_start":"لنبدأ",
 "description1":"اختر النمط واللغة المفضلين لديك ومخصصة تناسب أسلوبك لبدء تجربة مريحة .",
-"personalize_your_experience":"خصص تجربتك"
+"personalize_your_experience":"خصص تجربتك",
+"home":"منزل",
+"map":"الموقع",
+"love":"المفضلة",
+"profile":"الملف الشخصي",
+"welcome_back":"مرحبا بعودتك ",
+"all":"الكل",
+"sport":"رياضة",
+"birthday":"عيد ميلاد",
+"meeting":"اجتماع",
+"gaming":"اللعاب",
+"workshop":"ورشة",
+"book_club":"نادي الكتاب",
+"exhibition":"معرض",
+"holiday":"اجازة",
+"eating":"اكل"
 
 }

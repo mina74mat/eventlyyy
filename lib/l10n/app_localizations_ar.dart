@@ -38,4 +38,49 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get personalize_your_experience => 'خصص تجربتك';
+
+  @override
+  String get home => 'منزل';
+
+  @override
+  String get map => 'الموقع';
+
+  @override
+  String get love => 'المفضلة';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
+  String get welcome_back => 'مرحبا بعودتك ';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get sport => 'رياضة';
+
+  @override
+  String get birthday => 'عيد ميلاد';
+
+  @override
+  String get meeting => 'اجتماع';
+
+  @override
+  String get gaming => 'اللعاب';
+
+  @override
+  String get workShop => 'WorkShop';
+
+  @override
+  String get book_club => 'نادي الكتاب';
+
+  @override
+  String get exhibition => 'معرض';
+
+  @override
+  String get holiday => 'اجازة';
+
+  @override
+  String get eating => 'اكل';
 }

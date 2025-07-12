@@ -38,4 +38,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get personalize_your_experience => 'Personalize Your Experience';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get map => 'Map';
+
+  @override
+  String get love => 'Love';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get welcome_back => 'Welcome Back ✨';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get sport => 'Sport';
+
+  @override
+  String get birthday => 'Birthday';
+
+  @override
+  String get meeting => 'Meeting';
+
+  @override
+  String get gaming => 'Gaming';
+
+  @override
+  String get workShop => 'WorkShop';
+
+  @override
+  String get book_club => 'Book Club';
+
+  @override
+  String get exhibition => 'Exhibition';
+
+  @override
+  String get holiday => 'Holiday';
+
+  @override
+  String get eating => 'Eating';
 }

@@ -1,8 +1,7 @@
-import 'package:eventlyyy/ui/home_screen.dart';
+import 'package:eventlyyy/ui/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+
 import '../../l10n/app_localizations.dart';
 import '../../providers/app_language_provider.dart';
 import '../../providers/app_theme_provider.dart';
@@ -58,150 +57,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
               SizedBox(height: height * 0.03),
 
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Text(
-              //       'Language',
-              //       style: TextStyle(
-              //         fontSize: 20,
-              //         color: Colors.indigo,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //     ToggleButtons(
-              //       borderRadius: BorderRadius.circular(50),
-              //       borderColor: Colors.blue,
-              //       selectedBorderColor: Colors.blue,
-              //       selectedColor: Colors.white,
-              //       fillColor: Colors.blue,
-              //       isSelected: [true, false],
-              //       onPressed: (int index) {
-              //
-              //         print('Selected Language: $index');
-              //       },
-              //       children: [
-              //         Image.asset(
-              //           'assets/images/lr.png',
-              //           width: 32,
-              //           height: 32,
-              //         ),
-              //         Image.asset(
-              //           'assets/images/eg.png',
-              //           width: 32,
-              //           height: 32,
-              //         ),
-              //       ],
-              //     ),
-              //   ],
-              // ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Text(
-              //       'Theme',
-              //       style: TextStyle(
-              //         fontSize: 20,
-              //         color: Colors.indigo,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //     ToggleSwitch(
-              //       minWidth: 50.0,
-              //       minHeight: 30.0,
-              //       initialLabelIndex: 0,
-              //       cornerRadius: 20.0,
-              //       activeFgColor: Colors.white,
-              //       inactiveBgColor: Colors.grey,
-              //       inactiveFgColor: Colors.white,
-              //       totalSwitches: 2,
-              //       icons: [
-              //         FontAwesomeIcons.sun,
-              //         FontAwesomeIcons.moon,
-              //
-              //       ],
-              //       iconSize: 30.0,
-              //       activeBgColors: [[Colors.yellow, Colors.orange], [Colors.black45, Colors.black26]],
-              //       animate: true, // with just animate set to true, default curve = Curves.easeIn
-              //       curve: Curves.bounceInOut, // animate must be set to true when using custom curve
-              //       onToggle: (index) {
-              //         print('switched to: $index');
-              //       },
-              //     ),
-              //   ],
-              // ),
 
-              // Row(
-              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //         children: [
-              //           Text(AppLocalizations.of(context)!.language,
-              //           style: TextStyle(
-              //             fontWeight: FontWeight.bold,
-              //             fontSize: 20,
-              //             color: Color(0xff5669FF)
-              //           ),),
-              //           Container(
-              //             decoration: BoxDecoration(
-              //               borderRadius: BorderRadius.circular(16),
-              //               border: Border.all(
-              //                 width: 2,
-              //                 color: Color(0xff5669FF)
-              //               )
-              //             ),
-              //             height: height*0.03,
-              //             width: width*0.14,
-              //             child: Row(
-              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //               children: [
-              //                 InkWell(
-              //                     onTap: (){},
-              //                     child: Image.asset('assets/images/lr.png')),
-              //                 InkWell(
-              //                     onTap: (){},
-              //                     child: Image.asset('assets/images/eg.png'))
-              //               ],
-              //             ),
-              //           )
-              //         ],
-              //       ),
-              // SizedBox(height: height*0.02,),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Text(AppLocalizations.of(context)!.language,
-              //       style: TextStyle(
-              //           fontWeight: FontWeight.bold,
-              //           fontSize: 20,
-              //           color: Color(0xff5669FF)
-              //       ),),
-              //     Container(
-              //       decoration: BoxDecoration(
-              //           borderRadius: BorderRadius.circular(16),
-              //           border: Border.all(
-              //               width: 2,
-              //               color: Color(0xff5669FF)
-              //           )
-              //       ),
-              //       height: height*0.03,
-              //       width: width*0.14,
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //         children: [
-              //           InkWell(
-              //               onTap: (){
-              //
-              //
-              //               },
-              //
-              //               child: Image.asset('assets/images/sun.png')),
-              //           InkWell(
-              //               onTap: (){},
-              //               child: Image.asset('assets/images/moon.png'))
-              //         ],
-              //       ),
-              //     )
-              //   ],
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -374,7 +230,8 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
 
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                  Navigator.pushReplacementNamed(
+                      context, OnBoardingScreen.routeName);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
