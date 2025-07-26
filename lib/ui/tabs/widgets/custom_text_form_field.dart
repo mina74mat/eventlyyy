@@ -13,6 +13,7 @@ class CustomTextFormField extends StatelessWidget {
   OnValidator validator;
   TextEditingController controller;
   bool obscureText;
+  int maxLines;
 
   CustomTextFormField({
     super.key,
@@ -26,6 +27,7 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     required this.controller,
     this.obscureText = false,
+    this.maxLines = 1,
   });
 
   @override
@@ -34,6 +36,7 @@ class CustomTextFormField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: width * 0.05),
       child: TextFormField(
+        maxLines: maxLines,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,

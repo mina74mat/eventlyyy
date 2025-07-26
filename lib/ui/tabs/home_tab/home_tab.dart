@@ -1,8 +1,10 @@
 import 'package:eventlyyy/l10n/app_localizations.dart';
+import 'package:eventlyyy/providers/event_list_provider.dart';
 import 'package:eventlyyy/ui/tabs/home_tab/widget/event_item.dart';
 import 'package:eventlyyy/ui/tabs/home_tab/widget/event_tab_item.dart';
 import 'package:eventlyyy/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeTab extends StatefulWidget {
   HomeTab({super.key});
@@ -12,24 +14,19 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  int selectedIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
+    var eventsListProvider = Provider.of<EventListProvider>(context);
+    eventsListProvider.getEventNameList(context);
+
+    if (eventsListProvider.eventsList.isEmpty) {
+      eventsListProvider.getAllEvents();
+    }
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    List<String> eventsNameList = [
-      AppLocalizations.of(context)!.all,
-      AppLocalizations.of(context)!.sport,
-      AppLocalizations.of(context)!.birthday,
-      AppLocalizations.of(context)!.meeting,
-      AppLocalizations.of(context)!.gaming,
-      AppLocalizations.of(context)!.workShop,
-      AppLocalizations.of(context)!.exhibition,
-      AppLocalizations.of(context)!.holiday,
-      AppLocalizations.of(context)!.eating,
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -108,22 +105,32 @@ class _HomeTabState extends State<HomeTab> {
               ),
 
               DefaultTabController(
-                length: eventsNameList.length,
+                length: eventsListProvider.eventsNameList.length,
                 child: TabBar(
                   onTap: (index) {
-                    selectedIndex = index;
-
-                    setState(() {});
+                    eventsListProvider.changeSelectedIndex(index);
                   },
                   indicatorColor: Colors.transparent,
                   dividerColor: Colors.transparent,
                   labelPadding: EdgeInsets.zero,
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
-                  tabs: eventsNameList.map((eventName) {
+                  tabs: eventsListProvider.eventsNameList.map((eventName) {
                     return EventTabItem(
+                      selectedTextStyle: Theme
+                          .of(context)
+                          .textTheme
+                          .headlineMedium!,
+                      unSelectedTextStyle: Theme
+                          .of(context)
+                          .textTheme
+                          .headlineSmall!,
+                      selectedBgColor: Theme
+                          .of(context)
+                          .focusColor,
                       isSelected:
-                          selectedIndex == eventsNameList.indexOf(eventName),
+                      eventsListProvider.selectedIndex ==
+                          eventsListProvider.eventsNameList.indexOf(eventName),
                       eventName: eventName,
                     );
                   }).toList(),
@@ -137,10 +144,27 @@ class _HomeTabState extends State<HomeTab> {
       body: Column(
         children: [
           Expanded(
-            child: ListView.builder(
-              itemCount: 20,
+            child: eventsListProvider.filterEventList.isEmpty ?
+            Center(child: Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                  color: AppColors.primaryLight,
+                  borderRadius: BorderRadius.circular(30)
+              ),
+              child: Text('No Events Found',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24
+                ),),
+            ),) :
+
+            ListView.builder(
+              itemCount: eventsListProvider.filterEventList.length,
               itemBuilder: (context, index) {
-                return EventItem();
+                return EventItem(
+                  event: eventsListProvider.filterEventList[index],
+                );
               },
             ),
           ),
@@ -148,4 +172,6 @@ class _HomeTabState extends State<HomeTab> {
       ),
     );
   }
+
+
 }

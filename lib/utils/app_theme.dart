@@ -29,6 +29,12 @@ class AppTheme {
             color: AppColors.primaryLight,
             fontWeight: FontWeight.w500,
             fontSize: 16
+        ),
+
+        titleLarge: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            color: Colors.black
         )
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -53,6 +59,7 @@ class AppTheme {
             )
         )
     ),
+
 
 
 
@@ -87,6 +94,11 @@ class AppTheme {
         fontSize: 20,
         color: Colors.white,
       ),
+        titleLarge: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            color: Colors.white
+        )
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: Colors.transparent,

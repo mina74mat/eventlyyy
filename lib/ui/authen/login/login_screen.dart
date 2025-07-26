@@ -3,7 +3,11 @@ import 'package:eventlyyy/ui/home_screen.dart';
 import 'package:eventlyyy/ui/tabs/widgets/custom_elevated_button.dart';
 import 'package:eventlyyy/ui/tabs/widgets/custom_text_form_field.dart';
 import 'package:eventlyyy/utils/app_colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../../utils/dialog_utils.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login_screen';
@@ -174,7 +178,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       backgroundColor: Colors.white,
                       icon: true,
                       iconWidget: Image.asset('assets/images/logo_google.png'),
-                      onPressed: () {},
+                      onPressed: () {
+                        signInWithGoogle();
+                      },
                       text: 'Login With Google',
                       textColor: AppColors.primaryLight,
                     ),
@@ -188,9 +194,75 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void login() {
+  void login() async {
     if (formKey.currentState?.validate() == true) {
-      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+      DialogUtils.showLoading(context: context);
+      try {
+        final credential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMessage(context: context, message: 'Login Successfully',
+            posActionName: 'Ok',
+            posAction: () {
+              Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+            });
+        print('login successful');
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+          DialogUtils.hideLoading(context: context);
+          DialogUtils.showMessage(
+              context: context, message: 'Login Successfully');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+        }
+      } catch (e) {
+        print(e.toString());
+      }
     }
   }
+
+  Future<void> signInWithGoogle() async {
+    DialogUtils.showLoading(context: context);
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      if (googleUser == null) {
+        DialogUtils.hideLoading(context: context);
+        return;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser
+          .authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      DialogUtils.hideLoading(context: context);
+      DialogUtils.showMessage(
+        context: context,
+        message: 'Login with Google Successfully',
+        posActionName: 'Ok',
+        posAction: () {
+          Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+        },
+      );
+
+      print('Google login successful');
+    } catch (e) {
+      DialogUtils.hideLoading(context: context);
+      print('Google login error: $e');
+      DialogUtils.showMessage(
+          context: context, message: 'Login with Google failed');
+    }
+  }
+
+
 }

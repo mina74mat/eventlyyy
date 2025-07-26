@@ -1,5 +1,6 @@
 import 'package:eventlyyy/l10n/app_localizations.dart';
 import 'package:eventlyyy/ui/tabs/favorite_tab/favorite_tab.dart';
+import 'package:eventlyyy/ui/tabs/home_tab/add_event/add_event.dart';
 import 'package:eventlyyy/ui/tabs/home_tab/home_tab.dart';
 import 'package:eventlyyy/ui/tabs/map_tab/map_tab.dart';
 import 'package:eventlyyy/ui/tabs/profile/profile_tab.dart';
@@ -72,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          Navigator.pushNamed(context, AddEvent.routeName);
         },
 
         child: Icon(Icons.add, color: Colors.white, size: 35,),
